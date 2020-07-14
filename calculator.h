@@ -17,5 +17,7 @@ public:
 
 private:
     Ui::Calculator *ui;
+private slots:
+    void DigitPressed();
 };
 #endif // CALCULATOR_H
