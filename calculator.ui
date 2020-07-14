@@ -27,29 +27,7 @@
 	border-radius: 10px;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>241</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel {
-  qproperty-alignment: 'AlignVCenter | AlignRight';
-	margin-right: 10px;
-	color: #000000;
-}
-
-background-color : white;</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Button_clear">
+   <widget class="QPushButton" name="BtnClear">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -76,7 +54,7 @@ QPushButton:pressed {
      <string>C</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_divide">
+   <widget class="QPushButton" name="BtnDivide">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -103,7 +81,7 @@ QPushButton:pressed {
      <string>÷</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_percent">
+   <widget class="QPushButton" name="BtnPercent">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -130,7 +108,7 @@ QPushButton:pressed {
      <string>%</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_ChangeSign">
+   <widget class="QPushButton" name="BtnPlusMinus">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -211,7 +189,7 @@ QPushButton:pressed {
      <string>7</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_multiply">
+   <widget class="QPushButton" name="BtnMultiply">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -319,7 +297,7 @@ QPushButton:pressed {
      <string>5</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_substract">
+   <widget class="QPushButton" name="Substract">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -373,7 +351,7 @@ QPushButton:pressed {
      <string>4</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_add">
+   <widget class="QPushButton" name="BtnAdd">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -481,7 +459,7 @@ QPushButton:pressed {
      <string>3</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_decimal">
+   <widget class="QPushButton" name="BtnDecimal">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -535,7 +513,7 @@ QPushButton:pressed {
      <string>0</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_equals">
+   <widget class="QPushButton" name="BtnEquals">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -601,13 +579,13 @@ color: red;
 background-color : white;</string>
     </property>
     <property name="text">
-     <string/>
+     <string>0</string>
     </property>
     <property name="frame">
      <bool>false</bool>
     </property>
     <property name="cursorPosition">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
@@ -616,7 +594,7 @@ background-color : white;</string>
      <enum>Qt::VisualMoveStyle</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_parentheses">
+   <widget class="QPushButton" name="BtnParentheses">
     <property name="geometry">
      <rect>
       <x>170</x>
