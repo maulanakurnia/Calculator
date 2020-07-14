@@ -2,6 +2,7 @@
 #include "ui_calculator.h"
 
 double defaultNum = 0.0;
+double firstNum;
 
 Calculator::Calculator(QWidget *parent)
     : QMainWindow(parent)
@@ -16,8 +17,19 @@ Calculator::Calculator(QWidget *parent)
         numButtons[i] = Calculator::findChild<QPushButton *>(btnName);
         connect(numButtons[i], SIGNAL(released()), this,SLOT(DigitPressed()));
     }
+    // Connect Unary Operation
     connect(ui->BtnPlusMinus, SIGNAL(released()), this,SLOT(unaryOperationPressed()));
     connect(ui->BtnPercent, SIGNAL(released()), this,SLOT(unaryOperationPressed()));
+
+    // Connect Binary Operation
+    connect(ui->BtnDivide, SIGNAL(released()), this,SLOT(binaryOperationPressed));
+    connect(ui->BtnMultiply, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
+    connect(ui->BtnSubstract, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
+    connect(ui->BtnAdd, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
+    ui->BtnDivide->setCheckable(true);
+    ui->BtnMultiply->setCheckable(true);
+    ui->BtnSubstract->setCheckable(true);
+    ui->BtnAdd->setCheckable(true);
 }
 
 Calculator::~Calculator()
@@ -62,4 +74,11 @@ void Calculator::unaryOperationPressed(){
         newNumDisp = QString::number(dispNum,'g',15);
         ui->Display->setText(newNumDisp);
     }
+}
+
+void Calculator::binaryOperationPressed(){
+    QPushButton * button = (QPushButton*) sender();
+
+    button->setChecked(true);
+
 }
