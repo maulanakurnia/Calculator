@@ -16,6 +16,7 @@ Calculator::Calculator(QWidget *parent)
         numButtons[i] = Calculator::findChild<QPushButton *>(btnName);
         connect(numButtons[i], SIGNAL(released()), this,SLOT(DigitPressed()));
     }
+    connect(ui->BtnPlusMinus, SIGNAL(released()), this,SLOT(unaryOperationPressed()));
 }
 
 Calculator::~Calculator()
@@ -41,4 +42,17 @@ void Calculator::DigitPressed(){
 void Calculator::on_BtnDecimal_released()
 {
     ui->Display->setText(ui->Display->text() + ".");
+}
+
+void Calculator::unaryOperationPressed(){
+    QPushButton * button = (QPushButton*) sender();
+    double dispNum;
+    QString newNumDisp;
+
+    if(button->text() == "+/-"){
+        dispNum = ui->Display->text().toDouble();
+        dispNum *= -1;
+        newNumDisp = QString::number(dispNum,'g',15);
+        ui->Display->setText(newNumDisp);
+    }
 }
