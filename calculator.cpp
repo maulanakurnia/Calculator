@@ -125,3 +125,14 @@ void Calculator::on_BtnEquals_released()
         }
         userIsTypingSecondNumber = false;
 }
+
+void Calculator::on_BtnClear_released()
+{
+    ui->BtnAdd->setChecked(false);
+    ui->BtnSubstract->setChecked(false);
+    ui->BtnMultiply->setChecked(false);
+    ui->BtnDivide->setChecked(false);
+
+    userIsTypingSecondNumber = false;
+    ui->Display->setText("0");
+}
