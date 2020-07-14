@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Calculator</class>
  <widget class="QMainWindow" name="Calculator">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -19,12 +22,33 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>340</width>
+    <height>559</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>Calculator</string>
   </property>
   <property name="styleSheet">
    <string notr="true">	background-color: #ffffff;
 	border-radius: 10px;</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonFollowStyle</enum>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="BtnClear">
@@ -71,8 +95,7 @@ QPushButton:pressed {
 }
 
 QPushButton:pressed {
-	border: none;
-    background-color: #2ca7f8;
+   background: #2ca6f8;
 	color: #ffffff;
 }
 </string>
@@ -297,7 +320,7 @@ QPushButton:pressed {
      <string>5</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Substract">
+   <widget class="QPushButton" name="BtnSubstract">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -578,14 +601,17 @@ QPushButton:pressed {
 color: red;
 background-color : white;</string>
     </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
     <property name="text">
-     <string>0</string>
+     <string/>
     </property>
     <property name="frame">
      <bool>false</bool>
     </property>
     <property name="cursorPosition">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
