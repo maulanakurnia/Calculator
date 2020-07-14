@@ -17,6 +17,7 @@ Calculator::Calculator(QWidget *parent)
         connect(numButtons[i], SIGNAL(released()), this,SLOT(DigitPressed()));
     }
     connect(ui->BtnPlusMinus, SIGNAL(released()), this,SLOT(unaryOperationPressed()));
+    connect(ui->BtnPercent, SIGNAL(released()), this,SLOT(unaryOperationPressed()));
 }
 
 Calculator::~Calculator()
@@ -52,6 +53,12 @@ void Calculator::unaryOperationPressed(){
     if(button->text() == "+/-"){
         dispNum = ui->Display->text().toDouble();
         dispNum *= -1;
+        newNumDisp = QString::number(dispNum,'g',15);
+        ui->Display->setText(newNumDisp);
+    }
+    if(button->text() == "%"){
+        dispNum = ui->Display->text().toDouble();
+        dispNum *= 0.01;
         newNumDisp = QString::number(dispNum,'g',15);
         ui->Display->setText(newNumDisp);
     }
