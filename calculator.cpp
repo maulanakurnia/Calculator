@@ -38,3 +38,7 @@ void Calculator::DigitPressed(){
 
 }
 
+void Calculator::on_BtnDecimal_released()
+{
+    ui->Display->setText(ui->Display->text() + ".");
+}

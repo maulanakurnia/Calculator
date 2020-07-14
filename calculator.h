@@ -19,5 +19,6 @@ private:
     Ui::Calculator *ui;
 private slots:
     void DigitPressed();
+    void on_BtnDecimal_released();
 };
 #endif // CALCULATOR_H
