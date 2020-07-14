@@ -22,5 +22,6 @@ private slots:
     void on_BtnDecimal_released();
     void unaryOperationPressed();
     void binaryOperationPressed();
+    void on_BtnEquals_released();
 };
 #endif // CALCULATOR_H

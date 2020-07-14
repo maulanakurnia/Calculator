@@ -1,8 +1,10 @@
 #include "calculator.h"
 #include "ui_calculator.h"
+#include "QDebug"
 
 double defaultNum = 0.0;
 double firstNum;
+bool userIsTypingSecondNumber = false;
 
 Calculator::Calculator(QWidget *parent)
     : QMainWindow(parent)
@@ -22,7 +24,7 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->BtnPercent, SIGNAL(released()), this,SLOT(unaryOperationPressed()));
 
     // Connect Binary Operation
-    connect(ui->BtnDivide, SIGNAL(released()), this,SLOT(binaryOperationPressed));
+    connect(ui->BtnDivide, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
     connect(ui->BtnMultiply, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
     connect(ui->BtnSubstract, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
     connect(ui->BtnAdd, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
@@ -40,15 +42,25 @@ Calculator::~Calculator()
 void Calculator::DigitPressed(){
     QPushButton * button = (QPushButton*)sender();
 
-    QString btnVal = button->text();
-    QString displayVal = ui->Display->text();
+    double labelNumber;
+    QString newLabel;
 
-    if((displayVal.toDouble() == 0) || (displayVal.toDouble() == 0.0)){
-        ui->Display->setText(btnVal);
-    } else {
-        QString newVal = displayVal + btnVal;
-        ui->Display->setText(newVal);
+    if((ui->BtnAdd->isChecked() || ui->BtnSubstract->isChecked() ||
+       ui->BtnMultiply->isChecked() || ui->BtnDivide->isChecked()) && (!userIsTypingSecondNumber))
+    {
+        labelNumber = button->text().toDouble();
+        userIsTypingSecondNumber = true;
+            newLabel = QString::number(labelNumber,'g',9999);
+    } else{
+        if(ui->Display->text().contains('.') && button->text() == "0"){
+            newLabel = ui->Display->text() + button->text();
+        } else {
+            labelNumber = (ui->Display->text() + button->text()).toDouble();
+            newLabel = QString::number(labelNumber, 'g',9999);
+        }
     }
+
+    ui->Display->setText(newLabel);
 
 }
 
@@ -79,6 +91,37 @@ void Calculator::unaryOperationPressed(){
 void Calculator::binaryOperationPressed(){
     QPushButton * button = (QPushButton*) sender();
 
+    firstNum = ui->Display->text().toDouble();
     button->setChecked(true);
 
+}
+
+void Calculator::on_BtnEquals_released()
+{
+        double secondNum, labelNumber;
+        QString newLabel;
+        secondNum = ui->Display->text().toDouble();
+
+        if(ui->BtnAdd->isChecked()){
+            labelNumber = firstNum + secondNum;
+            newLabel = QString::number(labelNumber,'g',9999);
+            ui->Display->setText(newLabel);
+            ui->BtnAdd->setChecked(false);
+        } else if(ui->BtnSubstract->isChecked()){
+            labelNumber = firstNum - secondNum;
+            newLabel = QString::number(labelNumber,'g',9999);
+            ui->Display->setText(newLabel);
+            ui->BtnSubstract->setChecked(false);
+        } else if(ui->BtnMultiply->isChecked()){
+            labelNumber = firstNum * secondNum;
+            newLabel = QString::number(labelNumber,'g',9999);
+            ui->Display->setText(newLabel);
+            ui->BtnMultiply->setChecked(false);
+        } else if(ui->BtnDivide->isChecked()){
+            labelNumber = firstNum / secondNum;
+            newLabel = QString::number(labelNumber,'g',9999);
+            ui->Display->setText(newLabel);
+            ui->BtnDivide->setChecked(false);
+        }
+        userIsTypingSecondNumber = false;
 }
