@@ -27,6 +27,9 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->BtnMultiply, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
     connect(ui->BtnSubstract, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
     connect(ui->BtnAdd, SIGNAL(released()), this,SLOT(binaryOperationPressed()));
+
+    connect(ui->BtnBackspace, SIGNAL(released()), this,SLOT(Backspace()));
+    ui->BtnBackspace->setText(QString::fromUtf8("\u232B"));
     ui->BtnDivide->setCheckable(true);
     ui->BtnMultiply->setCheckable(true);
     ui->BtnSubstract->setCheckable(true);
@@ -133,4 +136,21 @@ void Calculator::on_BtnClear_released()
 
     userIsTypingSecondNumber = false;
     ui->Display->setText("0");
+}
+
+void Calculator::Backspace() {
+    int length = ui->Display->text().length();
+    if (length) {
+        char last_char = ui->Display->text().at(length - 1).toLatin1();
+        if (!std::isdigit(last_char))
+            userIsTypingSecondNumber = true;
+        ui->Display->setText(ui->Display->text().left(length - 1));
+    }
+}
+
+void Calculator::on_BtnParentheses_released()
+{
+    ui->Display->setText("(");
+    ui->Display->setFocus(Qt::OtherFocusReason);
+    ui->Display->setText(")");
 }

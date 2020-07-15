@@ -24,5 +24,7 @@ private slots:
     void binaryOperationPressed();
     void on_BtnEquals_released();
     void on_BtnClear_released();
+    void on_BtnParentheses_released();
+    void Backspace();
 };
 #endif // CALCULATOR_H
